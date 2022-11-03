@@ -8,8 +8,9 @@ const Playground = () => {
     //   <Circle size={50} />
     // </MainWrapper>
     <MainWrapper back={"black"}>
-    <Circle size={50} />
-  </MainWrapper>
+      <Circle size={50} />
+      <Circle size={50} />
+    </MainWrapper>
   )
 }
 
