@@ -17,7 +17,7 @@ export default function Home() {
         <Navbar />
         <Playground/>
 
-        {/* <Brand /> */}
+        <Brand />
       </main>
     </div>
   )
