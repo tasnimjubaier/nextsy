@@ -1,9 +1,16 @@
 import Head from 'next/head'
+import { useRef } from 'react'
+import { useEffect } from 'react'
+import styled from 'styled-components'
 import Brand from '../shared/components/Brand/Brand'
+import GoogleChart from '../shared/components/GoogleChart/GoogleChart'
 import Navbar from '../shared/components/Navbar/Navbar'
 import Playground from '../shared/components/Playground/Playground'
+import Playground2 from '../shared/components/Playground2/Playground2'
+
 
 export default function Home() {
+
   return (
     <div>
       <Head>
@@ -15,9 +22,11 @@ export default function Home() {
 
       <main>
         <Navbar />
-        <Playground/>
+        <Playground2 />
 
-        <Brand />
+        {/* <GoogleChart /> */}
+        {/* <Playground /> */}
+        {/* <Brand /> */}
       </main>
     </div>
   )

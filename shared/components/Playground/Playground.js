@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components'
 import { stepContentClasses } from '@mui/material';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Circle from '../Drawing/Circle/Circle'
 import MainWrapper from '../MainWrapper/MainWrapper'
 
@@ -22,27 +22,30 @@ const Div = styled.div`
   border-radius: 10px;
 }
   width: 100%;
-  height : 500px;
+  height : 100vh;
   display:flex;
-  overflow: auto;
+  overflow: visible;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  background: whitesmoke;
+  background: rgba(203, 203, 203, 0.97);
   align-items: center;
   padding: 100px;
+  cursor: none;
 `;
+
+
 
 const Playground = () => {
   const [content, setContent] = useState("");
-
+  
   useEffect(() => {
-    
     const callApi = async () => {
       const data = await fetch("/api/content").then(res => res.json()).then(res => res.data)
       setContent(data)
     }
     callApi()
+
   }, [content]);
   
   return (
@@ -50,7 +53,7 @@ const Playground = () => {
     //   <Circle size={50} />
     // </MainWrapper>
   <Div>
-    {content}
+    {/* {content} */}
   </Div>
   )
 }

@@ -3,8 +3,8 @@ import MainWrapper from '../MainWrapper/MainWrapper'
 
 const Navbar = () => {
   return (
-    <MainWrapper height={80} back={"rgba(230, 230, 230, 1)"}>
-      Navbar Component 
+    <MainWrapper height={40} back={"rgba(74, 147, 160, 0.97)"}>
+      Nextsy
     </MainWrapper>
   )
 }
