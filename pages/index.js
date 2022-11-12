@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import styled from 'styled-components'
 import Brand from '../shared/components/Brand/Brand'
 import GoogleChart from '../shared/components/GoogleChart/GoogleChart'
+import LandingPage from '../shared/components/LandingPage/LandingPage'
 import Navbar from '../shared/components/Navbar/Navbar'
 import Playground from '../shared/components/Playground/Playground'
 import Playground2 from '../shared/components/Playground2/Playground2'
@@ -21,8 +22,9 @@ export default function Home() {
       </Head>
 
       <main>
-        <Navbar />
-        <Playground2 />
+        <LandingPage />
+        {/* <Navbar /> */}
+        {/* <Playground2 /> */}
 
         {/* <GoogleChart /> */}
         {/* <Playground /> */}
