@@ -1,13 +1,21 @@
 import React from 'react'
 import { useState } from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes, css } from 'styled-components'
 
 const ItemDiv = styled.div`
 	display: block; 
 	user-select: none;
+	// padding: 2px 10px 2px 10px;
 `;
 const TitleDiv = styled.div`
-	background: pink;
+	height: 1.5em;
+	font-weight: bold;
+	// margin: 2px 0 5px 0;
+	// background:red;
+	:hover {
+		border-bottom: 1px solid red;
+		// color: white;
+	}
 `;
 
 const SlideInKeyframe = keyframes`
@@ -15,28 +23,33 @@ const SlideInKeyframe = keyframes`
 		height: 0px;
 	}
 	to {
-		height: 100px;
+		height: 200px;
 	}
 `;
-
 
 const SubDiv = styled.div`
-	height: 0px;
+	height: auto;
+	// background: pink;
+	padding: 2px 5px;
 	overflow: hidden;
 	display: ${props => props.show ? "block" : "none"};
-	visibility: ${props => props.show ? "visible" : "hidden"};
-	:active{	
-		background: red;
-		animation-name: ${SlideInKeyframe};
-		animation-duration: 5s;
-		animation-iteration-count: infinite;
-	}
 `;
 
+const SubDivItem = styled.div`
+
+	:hover {
+		font-weight: bold;
+	}
+`;
+	
+	// ${props =>  props.show && css`
+	// 	animation-name: ${SlideInKeyframe};
+	// 	animation-duration: .5s;
+	// 	animation-iteration-count: 1;`
+	// }
 
 const TopicItem = ({item}) => {
 	const [showSub, setShowSub] = useState(false)
-
 
 	return (
 		<ItemDiv>
@@ -45,7 +58,7 @@ const TopicItem = ({item}) => {
 			<SubDiv show={showSub}>
 				{
 					item.subItems.map((sub, key) => (
-						<div key={key}>{sub}</div>
+						<SubDivItem key={key}>{sub}</SubDivItem>
 					))
 				}
 			</SubDiv>
