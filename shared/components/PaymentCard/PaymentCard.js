@@ -80,7 +80,8 @@ const SubTitle = styled.div`
 `;
 
 const Text = styled.div`
-	font-size: 10px;
+	font-size: 15px;
+  font-weight: normal;
 	text-align: left;
   
   margin: 10px 0 0 0;

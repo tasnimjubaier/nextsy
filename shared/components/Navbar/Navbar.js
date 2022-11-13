@@ -46,6 +46,8 @@ const Wrapper = styled.div`
   background: white;
   position: sticky;
   top: 0;
+
+  z-index: 1;
   
   display: flex; 
   flex-direction: row;
