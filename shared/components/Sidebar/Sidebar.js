@@ -18,8 +18,8 @@ const Sidebar = () => {
 	return (
 		<InnerDiv>
 			{
-				topics.map(topic => (
-					<Topic topic={topic} />
+				topics.map((topic, key) => (
+					<Topic key={key} topic={topic} />
 				))
 			}
 		</InnerDiv>

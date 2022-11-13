@@ -48,14 +48,19 @@ const SubDivItem = styled.div`
 	// 	animation-iteration-count: 1;`
 	// }
 
-const TopicItem = ({item}) => {
-	const [showSub, setShowSub] = useState(false)
+const TopicItem = ({onSelectTopic, isSelected, item}) => {
+
+	const handleClick = () => {
+		console.log(isSelected)
+		if(!isSelected) onSelectTopic(item.id)
+		else onSelectTopic(null)
+	}
 
 	return (
 		<ItemDiv>
-			<TitleDiv onClick={() => setShowSub(!showSub)}><a>{item.name}</a></TitleDiv>
+			<TitleDiv onClick={handleClick}><a>{item.name}</a></TitleDiv>
 
-			<SubDiv show={showSub}>
+			<SubDiv show={isSelected}>
 				{
 					item.subItems.map((sub, key) => (
 						<SubDivItem key={key}>{sub}</SubDivItem>

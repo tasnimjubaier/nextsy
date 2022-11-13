@@ -22,13 +22,13 @@ export default function Home() {
       </Head>
 
       <main>
+        <Navbar />
         <LandingPage />
-        {/* <Navbar /> */}
+        {/* <Playground /> */}
+        {/* <Brand /> */}
         {/* <Playground2 /> */}
 
         {/* <GoogleChart /> */}
-        {/* <Playground /> */}
-        {/* <Brand /> */}
       </main>
     </div>
   )
