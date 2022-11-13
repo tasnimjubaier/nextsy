@@ -33,6 +33,8 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-
 https://www.freecodecamp.org/news/15-web-developer-portfolios-to-inspire-you-137fb1743cae/
 https://shipable.io/
+
+refs
+https://stackoverflow.com/questions/54633690/how-can-i-use-multiple-refs-for-an-array-of-elements-with-hooks
