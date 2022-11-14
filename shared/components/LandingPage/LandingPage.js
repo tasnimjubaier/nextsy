@@ -1,9 +1,25 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components';
+import HoverBoard from '../HoverBoard/HoverBoard';
 import InfoCard from '../InfoCard/InfoCard';
 import MainWrapper from '../MainWrapper/MainWrapper'
 import PaymentCard from '../PaymentCard/PaymentCard';
  
+
+const Wrapper = styled.div`
+  width: 100%;
+  overflow: hidden;
+	font-size: 40px;
+  background: rgba(248, 248, 248, 1);
+
+  display: flex; 
+  flex-direction: column;
+	flex-flow: wrap;
+
+	// position: relative;
+`
+
+
 const blink = keyframes`
 	0% {
 		width: 12px;
@@ -100,35 +116,35 @@ const Button = styled.button`
 
 const LandingPage = () => {
 	return (
-		<>
-			<MainWrapper back={"white"} height={"800px"}>
-			<Badge>
-				<div style={{flex: "20%", display:'flex', justifyContent:'center'}}>
-					<CircleAnimation />
-				</div>
-				<div style={{flex: "80%"}}>
-					Limited slots available
-				</div>
-			</Badge>
-			<BrandTitle>
-				Make Ship Happen.
-			</BrandTitle>
-			<Description>
-				Short, focused design and growth collabs for startup tech founders that push good code but feel blocked by the other stuff.
-			</Description>
-			<Button>Get It Today</Button>
-		</MainWrapper>
-		<MainWrapper flexDirection={"row"} back={"rgba(230, 236, 255, 0.8)"} height={"1000px"}>
-			<InfoCard/>
-			<div style={{width:"50px"}}></div>
-			<InfoCard/>
-		</MainWrapper>
-		<MainWrapper flexDirection={"row"} back={"rgba(230, 236, 255, 0.8)"} height={"1000px"}>
-			<PaymentCard />
-			<div style={{width:"50px"}}></div>
-			<PaymentCard />
-		</MainWrapper>
-		</>
+		<Wrapper>
+			<HoverBoard>
+				<Badge>
+					<div style={{flex: "20%", display:'flex', justifyContent:'center'}}>
+						<CircleAnimation />
+					</div>
+					<div style={{flex: "80%"}}>
+						Limited slots available
+					</div>
+				</Badge>
+				<BrandTitle>
+					Make Ship Happen.
+				</BrandTitle>
+				<Description>
+					Short, focused design and growth collabs for startup tech founders that push good code but feel blocked by the other stuff.
+				</Description>
+				<Button>Get It Today</Button>
+			</HoverBoard>
+			<MainWrapper flexDirection={"row"} back={"rgba(230, 236, 255, 0.8)"} height={"1000px"}>
+				<InfoCard/>
+				<div style={{width:"50px"}}></div>
+				<InfoCard/>
+			</MainWrapper>
+			<MainWrapper flexDirection={"row"} back={"rgba(248, 248, 248, 1)"} height={"1000px"}>
+				<PaymentCard />
+				<div style={{width:"50px"}}></div>
+				<PaymentCard />
+			</MainWrapper>
+		</Wrapper>
 	)
 }
 

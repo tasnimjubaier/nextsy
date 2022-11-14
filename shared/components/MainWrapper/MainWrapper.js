@@ -11,7 +11,10 @@ const StyledBox = styled(Box)`
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  background: ${props => props.back ? props.back : "rgba(225, 191, 88, 0.78)"};
+  background: ${props => props.back ? props.back : "rgba(248, 248, 248, 1)"};
+
+  position: relative;
+  z-index: 0;
 `
 
 const MainWrapper = ({flexDirection, height, back, children}) => {

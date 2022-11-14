@@ -1,6 +1,6 @@
-import { SocialDistance } from '@mui/icons-material'
 import React, { useEffect, useRef, useState } from 'react'
 import styled, { css, keyframes } from 'styled-components'
+import MainWrapper from '../MainWrapper/MainWrapper'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   background: rgba(248, 248, 248, 1);
 
   display: flex; 
-  flex-direction: row;
+  flex-direction: column;
 	flex-flow: wrap;
 
 	position: relative;
@@ -26,7 +26,7 @@ const getPositionKeyframes = ({windowDimensions}) => {
 		`
 	}
 }
-
+ 
 const Box = styled.div`
 	width: 10px;
 	height: 10px;
@@ -44,6 +44,7 @@ const Box = styled.div`
   justify-content: center;
 
 	position: absolute; 
+	z-index: -1;
 
 	animation: ${props => 
 			css`
@@ -71,7 +72,7 @@ function getWindowDimensions() {
   };
 }
 
-const HoverBoard = () => {
+const HoverBoard = ({children}) => {
 	const [points, setPoints] = useState([])
   const [windowDimensions, setWindowDimensions] = useState(null);
 	const [mousePos, setMousePos] = useState({});
@@ -117,10 +118,6 @@ const HoverBoard = () => {
     }
 		
     window.addEventListener('mousemove', handleMouseMove)
-		// setInterval(() => {
-		// 	console.log(itemsRef.current[0].getBoundingClientRect().top)
-		// }, 1000);
-
     return () => {
 			window.removeEventListener('resize', handleResize)
       window.removeEventListener(
@@ -134,27 +131,18 @@ const HoverBoard = () => {
 		if(windowDimensions) setPoints(getPoints(windowDimensions))
 	}, [windowDimensions])
 
-
 	useEffect(() => {
 		itemsRef.current = itemsRef.current.slice(0, points.length);
  	}, [points]);
 
-	const handleC = (e) => {
-		e.preventDefault()
-		console.log(e)
-	}
-
-	//  useEffect(() => {
-	// 	console.log(itemsRef.current)
- 	// }, [itemsRef]);
-
 	return (
-		<Wrapper>
+		<MainWrapper back={"rgba(248, 248, 248, 1)"} height={"800px"}>
 			{points.map((point, key) => (
 				<Box delayX={key*key%(503)} delayY={key%(503)} windowDimensions={windowDimensions} 
 					ref={el => itemsRef.current[key] = el} key={key} />
 			))}
-		</Wrapper>
+			{children}
+		</MainWrapper>
 	)
 }
 

@@ -3,6 +3,7 @@ import { useRef } from 'react'
 import { useEffect } from 'react'
 import styled from 'styled-components'
 import Brand from '../shared/components/Brand/Brand'
+import Faq from '../shared/components/Faq/Faq'
 import GoogleChart from '../shared/components/GoogleChart/GoogleChart'
 import HoverBoard from '../shared/components/HoverBoard/HoverBoard'
 import LandingPage from '../shared/components/LandingPage/LandingPage'
@@ -23,9 +24,10 @@ export default function Home() {
       </Head>
 
       <main>
-        {/* <Navbar /> */}
-        {/* <LandingPage /> */}
-        <HoverBoard />
+        <Navbar />
+        <LandingPage />
+        <Faq />
+        {/* <HoverBoard /> */}
         {/* <Playground /> */}
         {/* <Brand /> */}
         {/* <Playground2 /> */}
