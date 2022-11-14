@@ -4,6 +4,8 @@ import MainWrapper from '../MainWrapper/MainWrapper'
 import { Inter, Roboto } from '@next/font/google'
 import logo from '../../../public/logo.png'
 import Image from 'next/image'
+// import Link from 'next/link'
+import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 const roboto = Roboto({
   weight: '400'
@@ -43,7 +45,7 @@ const Wrapper = styled.div`
   min-height: 100px;
   overflow: hidden;
   font-weight: bold;
-  background: white;
+  background: transparent;
   position: sticky;
   top: 0;
 
@@ -58,12 +60,26 @@ const Wrapper = styled.div`
 const Navbar = () => {
   return (
     <Wrapper>
+      <Link to="nav">
       <Logo className={roboto.className}>
-        <Image src={logo} alt="" style={{width: 40, height:40, margin:"0 10px 0 0"}}>
-        </Image>
+        <Image src={logo} alt="" style={{width: 40, height:40, margin:"0 10px 0 0"}} />
           nextsy
       </Logo>
-      <Others>this is other field</Others>
+      </Link>
+      <Others>
+        <Link to="landingpage">
+          Landing
+        </Link>
+        <Link to="hover">
+          HoverBoard
+        </Link>
+        <Link to="playground">
+          Playground
+        </Link>
+        <Link to="faq">
+          Faq
+        </Link>
+      </Others>
     </Wrapper>
   )
 }

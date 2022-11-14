@@ -25,12 +25,21 @@ export default function Home() {
 
       <main>
         <Navbar />
-        <LandingPage />
-        <Faq />
-        {/* <HoverBoard /> */}
-        {/* <Playground /> */}
-        {/* <Brand /> */}
-        {/* <Playground2 /> */}
+        <section id='landingpage'>
+          <LandingPage />
+        </section>
+        <section id='hover'>
+          <HoverBoard />
+        </section>
+        <section id='playground'>
+          <Playground />
+        </section>
+        <section id='faq'>
+          <Faq />
+        </section>
+        
+        <Brand />
+        <Playground2 />
 
         {/* <GoogleChart /> */}
       </main>
