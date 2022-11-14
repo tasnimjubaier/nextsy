@@ -1,5 +1,5 @@
-import { lime } from '@mui/material/colors';
-import React, { useEffect, useState } from 'react'
+import { SocialDistance } from '@mui/icons-material'
+import React, { useEffect, useRef, useState } from 'react'
 import styled, { css, keyframes } from 'styled-components'
 
 const Wrapper = styled.div`
@@ -7,63 +7,56 @@ const Wrapper = styled.div`
   height: 100vh;
   overflow: hidden;
 	font-size: 40px;
-  // font-weight: bold;
   background: rgba(248, 248, 248, 1);
 
   display: flex; 
   flex-direction: row;
 	flex-flow: wrap;
-  // justify-content: center;
-  // align-items: center;
 
 	position: relative;
 `
 
-const moveX = keyframes`
-from { left: 0; } to { left: 1400px; }
-`;
-
-const moveY = keyframes`
-	from { top: 0; } to { top: 800px; }
-`;
+const getPositionKeyframes = ({windowDimensions}) => {
+	return {
+		moveX : keyframes`
+			from { left: 0; } to { left: ${windowDimensions.width - 30}px; }
+		`,
+		moveY: keyframes`
+			from { top: 0; } to { top: ${windowDimensions.height - 30}px; }
+		`
+	}
+}
 
 const Box = styled.div`
-	width: 30px;
-	height: 30px;
-	background : white;
-	border: 2px solid black;
+	width: 10px;
+	height: 10px;
+	// border: 2px solid black;
+	background: none;
 	user-select: none;
+	border-radius: 50%;
 
 	font-size: 30px;
 	font-weight: bold;
 	color: transparent;
-	${props => {
-		if(props.x > 0)
-		return css`
-			text-shadow: 0px -15px 1px #000
-		`
-		else
-		return css`
-			text-shadow: 0px -15px 1px #000
-		`
-	}};
-	transition: text-shadow .3s ease-in-out;
+	transition: background .1s ease-in-out, width .1s ease-in-out, height .1s ease-in-out, filter .1s ease-in-out;
 
 	display: flex; 
   justify-content: center;
 
 	position: absolute; 
-	// top: 200px;
-	// left: 200px;
 
-	animation: ${moveX} 3.05s linear 0s infinite alternate, ${moveY} 3.4s linear 0s infinite alternate;
+	animation: ${props => 
+			css`
+			${(props) => getPositionKeyframes(props).moveX} 25s linear -${props.delayX}s infinite alternate, 
+			${(props) => getPositionKeyframes(props).moveY} 20s linear -${props.delayY}s infinite alternate
+		`};
 `;
 
 
 
 const getPoints = ({width, height}) => {
-	let arr = []
-	let lim = 1000
+	let arr = [] 
+	let lim = 150
 	for(let i = 1; i <= lim; i++) {
 		arr.push(i)
 	}
@@ -83,16 +76,50 @@ const HoverBoard = () => {
   const [windowDimensions, setWindowDimensions] = useState(null);
 	const [mousePos, setMousePos] = useState({});
 
+	const itemsRef = useRef([]);
+	
+	const handleMouseMove = (event) => {
+		const distance =(xa, ya, xb, yb) => {
+			return Math.sqrt( (xa-xb) * (xa-xb) + (ya-yb) * (ya-yb) )
+		}
+		setMousePos({ x: event.clientX, y: event.clientY })
+
+
+		itemsRef.current.forEach(ref => {
+			const posX = ref.getBoundingClientRect().left + 15
+			const posY = ref.getBoundingClientRect().top + 15
+			const mouseX = event.clientX
+			const mouseY = event.clientY
+			const dist = distance(posX, posY, mouseX, mouseY)
+
+			if(dist <= 100){
+				
+				ref.style.width = `${20 - dist / 10}px`
+				ref.style.height = `${20 - dist / 10}px`
+				ref.style.background = "rgba(250, 216, 0, 0.8)" 
+				ref.style.filter = "blur(2px)" 
+				// ref.style.textShadow = "0px -15px 1px #000"
+			}
+			else {
+				ref.style.width = "2px"
+				ref.style.height = "2px"
+				ref.style.background = "black" 
+				ref.style.filter = "blur(0px)" 
+				// ref.style.textShadow = "0px -15px 10px #000"
+			}
+		})
+	}
+
 	useEffect(() => {
 		setWindowDimensions(getWindowDimensions())
 		function handleResize() {
-      setWindowDimensions(getWindowDimensions());
+      setWindowDimensions(getWindowDimensions())
     }
-		const handleMouseMove = (event) => {
-      setMousePos({ x: event.clientX, y: event.clientY });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
+		
+    window.addEventListener('mousemove', handleMouseMove)
+		// setInterval(() => {
+		// 	console.log(itemsRef.current[0].getBoundingClientRect().top)
+		// }, 1000);
 
     return () => {
 			window.removeEventListener('resize', handleResize)
@@ -107,17 +134,26 @@ const HoverBoard = () => {
 		if(windowDimensions) setPoints(getPoints(windowDimensions))
 	}, [windowDimensions])
 
+
+	useEffect(() => {
+		itemsRef.current = itemsRef.current.slice(0, points.length);
+ 	}, [points]);
+
+	const handleC = (e) => {
+		e.preventDefault()
+		console.log(e)
+	}
+
+	//  useEffect(() => {
+	// 	console.log(itemsRef.current)
+ 	// }, [itemsRef]);
+
 	return (
 		<Wrapper>
-			{/* {points.map((point, key) => (
-				<Point top={point.y} left={point.x} key={key}>.</Point>
-			))} 
-			<Point top={0} left={0} >.</Point>
-			<Point top={10} left={0} >.</Point> */}
-			{/* {points.map((point, key) => (
-				<Box x={mousePos.x} y={mousePos.y} key={key}>.</Box>
-			))} */}
-			<Box>.</Box>
+			{points.map((point, key) => (
+				<Box delayX={key*key%(503)} delayY={key%(503)} windowDimensions={windowDimensions} 
+					ref={el => itemsRef.current[key] = el} key={key} />
+			))}
 		</Wrapper>
 	)
 }

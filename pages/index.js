@@ -24,9 +24,9 @@ export default function Home() {
 
       <main>
         {/* <Navbar /> */}
-        <LandingPage />
+        {/* <LandingPage /> */}
         <HoverBoard />
-        <Playground />
+        {/* <Playground /> */}
         {/* <Brand /> */}
         {/* <Playground2 /> */}
 
