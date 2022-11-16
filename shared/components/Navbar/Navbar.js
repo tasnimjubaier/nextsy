@@ -11,6 +11,23 @@ const roboto = Roboto({
   weight: '400'
 })
 
+const Wrapper = styled.div`
+  width: 100%;
+  min-height: 100px;
+  overflow: hidden;
+  font-weight: bold;
+  background: transparent;
+  position: sticky;
+  top: 0;
+
+  z-index: 1;
+  
+  display: flex; 
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`
+
 const Logo = styled.div`
   font-size: 45px;
   // font-weight: bold;
@@ -32,53 +49,47 @@ const Logo = styled.div`
 const Others = styled.div`
   font-size: 30px;
   flex: 80%;
+  font-weight: normal;
 
   display: flex;
-  justify-content: center; 
+  justify-content: space-around; 
   align-items: center;
-  // background: red;
+  
+
+  margin: 0 15% 0 30%;
+  cursor: pointer;
 `;
 
-
-const Wrapper = styled.div`
-  width: 100%;
-  min-height: 100px;
-  overflow: hidden;
-  font-weight: bold;
-  background: transparent;
-  position: sticky;
-  top: 0;
-
-  z-index: 1;
-  
-  display: flex; 
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`
+const StyledLink = styled(Link)`
+  padding: 5px;
+  :hover {
+    border-bottom: 4px solid gray;
+    font-weight: semi-bold;
+  }
+`;
 
 const Navbar = () => {
   return (
     <Wrapper>
-      <Link to="nav">
-      <Logo className={roboto.className}>
-        <Image src={logo} alt="" style={{width: 40, height:40, margin:"0 10px 0 0"}} />
-          nextsy
-      </Logo>
+      <Link to="landingpage">
+        <Logo className={roboto.className}>
+          <Image src={logo} alt="" style={{width: 40, height:40, margin:"0 10px 0 0"}} />
+            nextsy
+        </Logo>
       </Link>
       <Others>
-        <Link to="landingpage">
+        <StyledLink to="landingpage">
           Landing
-        </Link>
-        <Link to="hover">
+        </StyledLink>
+        <StyledLink to="hover">
           HoverBoard
-        </Link>
-        <Link to="playground">
+        </StyledLink>
+        <StyledLink to="playground">
           Playground
-        </Link>
-        <Link to="faq">
+        </StyledLink>
+        <StyledLink to="faq">
           Faq
-        </Link>
+        </StyledLink>
       </Others>
     </Wrapper>
   )

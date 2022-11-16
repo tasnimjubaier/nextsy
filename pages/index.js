@@ -10,6 +10,7 @@ import LandingPage from '../shared/components/LandingPage/LandingPage'
 import Navbar from '../shared/components/Navbar/Navbar'
 import Playground from '../shared/components/Playground/Playground'
 import Playground2 from '../shared/components/Playground2/Playground2'
+import Testimonials from '../shared/components/Testimonials/Testimonials'
 
 
 export default function Home() {
@@ -35,11 +36,12 @@ export default function Home() {
           <Playground />
         </section>
         <section id='faq'>
-          <Faq />
+          {/* <Faq /> */}
+          <Testimonials />
         </section>
         
-        <Brand />
-        <Playground2 />
+        {/* <Brand /> */}
+        {/* <Playground2 /> */}
 
         {/* <GoogleChart /> */}
       </main>
