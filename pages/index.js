@@ -3,6 +3,7 @@ import { useRef } from 'react'
 import { useEffect } from 'react'
 import styled from 'styled-components'
 import Brand from '../shared/components/Brand/Brand'
+import ConnectBoard from '../shared/components/ConnectBoard/ConnectBoard'
 import Faq from '../shared/components/Faq/Faq'
 import GoogleChart from '../shared/components/GoogleChart/GoogleChart'
 import HoverBoard from '../shared/components/HoverBoard/HoverBoard'
@@ -22,7 +23,8 @@ const getMain = () => {
           <LandingPage />
         </section>
         <section id='hover'>
-          <HoverBoard />
+          {/* <HoverBoard /> */}
+          <ConnectBoard />
         </section>
         <section id='playground'>
           {/* <Testimonials /> */}
