@@ -10,8 +10,36 @@ import LandingPage from '../shared/components/LandingPage/LandingPage'
 import Navbar from '../shared/components/Navbar/Navbar'
 import Playground from '../shared/components/Playground/Playground'
 import Playground2 from '../shared/components/Playground2/Playground2'
+import { Projects } from '../shared/components/Projects/Projects'
 import Testimonials from '../shared/components/Testimonials/Testimonials'
 
+
+const getMain = () => {
+  return (
+    <main>
+        <Navbar />
+        <section id='landingpage'>
+          <LandingPage />
+        </section>
+        <section id='hover'>
+          <HoverBoard />
+        </section>
+        <section id='playground'>
+          {/* <Testimonials /> */}
+          <Playground />
+        </section>
+        <section id='faq'>
+          <Projects />
+          {/* <Faq /> */}
+        </section>
+        
+        {/* <Brand /> */}
+        {/* <Playground2 /> */}
+
+        {/* <GoogleChart /> */}
+      </main>
+  )
+}
 
 export default function Home() {
 
@@ -24,27 +52,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <Navbar />
-        <section id='landingpage'>
-          <LandingPage />
-        </section>
-        <section id='hover'>
-          <HoverBoard />
-        </section>
-        <section id='playground'>
-          <Playground />
-        </section>
-        <section id='faq'>
-          {/* <Faq /> */}
-          <Testimonials />
-        </section>
-        
-        {/* <Brand /> */}
-        {/* <Playground2 /> */}
-
-        {/* <GoogleChart /> */}
-      </main>
+      {getMain()}
     </div>
   )
 }

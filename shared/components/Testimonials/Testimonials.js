@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import testimonials from '../../../data/testimonials.json'
 import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 import { useRef } from 'react';
@@ -17,7 +17,6 @@ const Wrapper = styled.div`
 
 	position: relative;
 `
-
 const OuterDiv = styled.div`
   width: 60%;
   min-height: 800px;
@@ -29,7 +28,6 @@ const OuterDiv = styled.div`
   align-items: center;
 `
 const TitleDiv = styled.div`
-  // background: red;
   font-size: 35px;
   margin: 60px 0 20px 0;
 `
@@ -48,7 +46,6 @@ const TestDiv = styled.div`
   flex-wrap: nowrap;
 
   overflow: hidden;
-
 `
 const Item = styled.section`
   min-width: 100%;
@@ -57,7 +54,7 @@ const Item = styled.section`
   padding: 40px 60px;
   display: flex; 
   flex-direction: column;
-  align-items: center;  
+  align-items: center;
 `
 
 const Scroller = styled.div`
@@ -75,37 +72,28 @@ const Bullet = styled.div`
   width:22px; 
   height:22px;
   border-radius: 50%;
-  background: rgba(101, 145, 255, 0.8);
+  background: ${props => props.active ? "rgba(0, 59, 210, 0.8)" : "rgba(101, 145, 255, 0.8)"};
   box-sizing: border-box;
 
-  padding: 2px;
+  padding: ${props => props.active ? 3 : 2}px;
   background-clip: content-box;
 
   transition: padding .05s ease-out, background .05s ease-out;
 
   :hover {
-    padding: 0px;
-    cursor: pointer;
-    background: rgba(0, 59, 210, 0.8);
-  }
-  
-  .active {
-    padding: 4px;
-    background: red;
-  }
-`;
-
-
-const Dummy = styled.div`
-  background: red;
-  .act {
-    background: blue;
+    ${props => props.active ? css`
+      cursor: pointer;
+    ` : css`
+      padding: 1px;
+      cursor: pointer;
+      background: rgba(0, 59, 210, 0.8);
+    `}
   }
 `;
-
 
 const Testimonials = () => {
   const [curId, setCurId] = useState(0)
+  const [activeBullets, setActiveBullets] = useState([])
   const refs = useRef([])
   const bulletRefs = useRef([])
   const refDiv = useRef(null)
@@ -115,23 +103,24 @@ const Testimonials = () => {
     bulletRefs.current = bulletRefs.current.slice(0, testimonials.length)
   })
 
+  useEffect(() => {
+    let bull = []
+    bull = bull.slice(0, testimonials.length)
+    bull[curId] = 1;
+    setActiveBullets(bull)
+  }, [curId])
+
+
   const handleScroll = id => e => {
     e.preventDefault()
-    refDiv.current.scrollTo({behavior: "smooth", left: refDiv.current.offsetWidth * (id-1)})
+    refDiv.current.scrollTo({behavior: "smooth", left: refDiv.current.offsetWidth * id})
+     
+    // let bull = [...activeBullets]
+    // bull[curId] = 0
+    // bull[id] = 1
     
-    console.log(bulletRefs.current[curId].classList)
-    bulletRefs.current[curId].classList.remove("active");
-    bulletRefs.current[id].classList.add("active");
-    console.log(bulletRefs.current[curId].classList)
-    // bulletRefs.current[curId].style.background = "rgba(101, 145, 255, 0.8)";
-    // bulletRefs.current[curId].style.padding = "2px";
-    // bulletRefs.current[id].style.background = "rgba(0, 30, 105, 0.8)";
-    // bulletRefs.current[id].style.padding = "4px";
-
+    // setActiveBullets(bull)
     setCurId(id)
-    // refs.current[id].scrollIntoView({
-    //   behavior: "smooth"
-    // });
   }
   
   return (
@@ -159,13 +148,12 @@ const Testimonials = () => {
           <Scroller>
           {
                 testimonials.map((t, key) => (
-                  <Bullet key={key} onClick={handleScroll(t.id)} ref={el => bulletRefs.current[t.id] = el} className={t.id == 0 ? "active" : ""}>
+                  <Bullet key={key} onClick={handleScroll(t.id)} ref={el => bulletRefs.current[t.id] = el} active={activeBullets[t.id]}>
 
                   </Bullet>
                 ))
               }
           </Scroller>
-          <Dummy className='act'> here you go </Dummy>
           
       </OuterDiv>
     </Wrapper>

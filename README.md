@@ -37,3 +37,8 @@ https://www.freecodecamp.org/news/15-web-developer-portfolios-to-inspire-you-137
 https://shipable.io/
 
 https://nextui.org/docs/guide/nextui-plus-nextjs
+
+
+## idea
+
+contest and problem tracker. 
