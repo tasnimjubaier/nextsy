@@ -27,8 +27,8 @@ const getMain = () => {
           <ConnectBoard />
         </section>
         <section id='playground'>
-          {/* <Testimonials /> */}
-          <Playground />
+          <Testimonials />
+          {/* <Playground /> */}
         </section>
         <section id='faq'>
           <Projects />

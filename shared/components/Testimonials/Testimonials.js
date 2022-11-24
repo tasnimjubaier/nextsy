@@ -91,6 +91,15 @@ const Bullet = styled.div`
   }
 `;
 
+const ALink = styled.a`
+  color: blue;
+  :hover {
+    text-decoration: underline;
+    color: blue;
+  }
+`;
+
+
 const Testimonials = () => {
   const [curId, setCurId] = useState(0)
   const [activeBullets, setActiveBullets] = useState([])
@@ -122,6 +131,47 @@ const Testimonials = () => {
     // setActiveBullets(bull)
     setCurId(id)
   }
+
+  function notifyMe(e) {
+    e.preventDefault()
+    window.open('http://www.leetcode.com', '_blank');
+    if (!("Notification" in window)) {
+      // Check if the browser supports notifications
+      alert("This browser does not support desktop notification");
+    } else if (Notification.permission === "granted") {
+      // Check whether notification permissions have already been granted;
+      // if so, create a notification
+      const notification = new Notification("Hi there!");
+      // …
+    } else if (Notification.permission !== "denied") {
+      // We need to ask the user for permission
+      Notification.requestPermission().then((permission) => {
+        // If the user accepts, let's create a notification
+        if (permission === "granted") {
+          const notification = new Notification("Hi there!");
+          console.log(notification)
+          notification.onclick = (event) => {
+            event.preventDefault(); // prevent the browser from focusing the Notification's tab
+            alert("clicked")
+
+            console.log('here')
+            window.open('http://www.leetcode.com', '_blank');
+          }
+          // notification.onclose = (event) => { 
+          //   event.preventDefault()
+          //   alert("notification closed")
+          // };
+          // notification.onshow = (e) => {
+          //   e.preventDefault()
+          //   alert('showing')
+          // }
+        }
+      });
+    }
+  
+    // At last, if the user has denied notifications, and you
+    // want to be respectful there is no need to bother them anymore.
+  }
   
   return (
     <Wrapper>
@@ -136,11 +186,12 @@ const Testimonials = () => {
               {
                 testimonials.map((t, key) => (
                   <Item key={key} id={t.id} ref={el => refs.current[t.id] = el} >
-                    <h1>{t.title}</h1>
-                    <p>{t.description}</p>
-                    <p>{t.description}</p>
-                    <p>{t.description}</p>
-                    <p>{t.description}</p>
+                    <h1>{t.name}{t.id}</h1>
+                    <p>{t.company.name}</p>
+                    <p>{t.company.bs}</p>
+                    <p>{t.phone}</p>
+                    <ALink href={`http://www.${t.website}`} rel="noreferrer" target="_blank">{t.website} --&gt;</ALink>
+                    <p>{t.address.city}</p>
                   </Item>
                 ))
               }
@@ -154,6 +205,9 @@ const Testimonials = () => {
                 ))
               }
           </Scroller>
+          {/* <Bullet onClick={notifyMe}>
+            notify me
+          </Bullet> */}
           
       </OuterDiv>
     </Wrapper>

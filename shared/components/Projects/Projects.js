@@ -1,10 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import testimonials from '../../../data/testimonials.json'
 import { Link, Button, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
-import { useRef } from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import axios from 'axios';
 
 
 const Wrapper = styled.div`
@@ -32,10 +30,22 @@ const OuterDiv = styled.div`
 
 
 export const Projects = () => {
+  const [content, setContent] = useState(null)
+
+  useEffect(() => {
+    axios.get("https://jsonplaceholder.typicode.com/users").then(res => res.data).then(res => {
+      const data = res
+      console.log(data)
+      setContent(data) 
+    }) 
+  }, []) 
+
   return (
     <Wrapper>
       <OuterDiv>
-        helloworld
+        <pre>
+        {JSON.stringify(content, null, 2)}
+        </pre>
       </OuterDiv>
     </Wrapper>
   )

@@ -17,7 +17,6 @@ const Wrapper = styled.div`
 `
 
 const getPositionKeyframes = ({windowDimensions}) => {
-  console.log(windowDimensions)
 
 	return {
 		moveX : keyframes`
