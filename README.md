@@ -38,6 +38,9 @@ https://shipable.io/
 
 https://nextui.org/docs/guide/nextui-plus-nextjs
 
+https://www.freecodecamp.org/news/15-web-developer-portfolios-to-inspire-you-137fb1743cae/
+https://shipable.io/
+
 
 ## idea
 

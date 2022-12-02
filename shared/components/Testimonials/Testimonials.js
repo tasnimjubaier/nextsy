@@ -124,12 +124,23 @@ const Testimonials = () => {
     e.preventDefault()
     refDiv.current.scrollTo({behavior: "smooth", left: refDiv.current.offsetWidth * id})
      
-    // let bull = [...activeBullets]
-    // bull[curId] = 0
-    // bull[id] = 1
-    
-    // setActiveBullets(bull)
     setCurId(id)
+  }
+
+  const handleKeyPress = e => {
+    console.log('User pressed: ', e.key);
+    if(e.key == "ArrowRight") {
+      let id = curId + 1
+      if(id == testimonials.length) id = 0
+      refDiv.current.scrollTo({behavior: "smooth", left: refDiv.current.offsetWidth * id})
+      setCurId(id)
+    }
+    else if(e.key == "ArrowLeft") {
+      let id = curId - 1
+      if(id == -1) id += testimonials.length
+      refDiv.current.scrollTo({behavior: "smooth", left: refDiv.current.offsetWidth * id})
+      setCurId(id)
+    }
   }
 
   function notifyMe(e) {
@@ -157,20 +168,9 @@ const Testimonials = () => {
             console.log('here')
             window.open('http://www.leetcode.com', '_blank');
           }
-          // notification.onclose = (event) => { 
-          //   event.preventDefault()
-          //   alert("notification closed")
-          // };
-          // notification.onshow = (e) => {
-          //   e.preventDefault()
-          //   alert('showing')
-          // }
         }
       });
     }
-  
-    // At last, if the user has denied notifications, and you
-    // want to be respectful there is no need to bother them anymore.
   }
   
   return (
@@ -182,16 +182,18 @@ const Testimonials = () => {
           <DescDiv>
           People Ive worked with have said some nice things...
           </DescDiv>
-          <TestDiv ref={refDiv}>
+          <TestDiv ref={refDiv}
+              tabIndex={0} onKeyDown={handleKeyPress}>
               {
                 testimonials.map((t, key) => (
-                  <Item key={key} id={t.id} ref={el => refs.current[t.id] = el} >
-                    <h1>{t.name}{t.id}</h1>
+                  <Item key={key} id={t.id} ref={el => refs.current[t.id] = el}>
+                    {/* <h1>{t.name}{t.id}</h1>
                     <p>{t.company.name}</p>
                     <p>{t.company.bs}</p>
                     <p>{t.phone}</p>
                     <ALink href={`http://www.${t.website}`} rel="noreferrer" target="_blank">{t.website} --&gt;</ALink>
-                    <p>{t.address.city}</p>
+                    <p>{t.address.city}</p> */}
+                    <img src={t.photo} style={{height:"100%"}}/>
                   </Item>
                 ))
               }
