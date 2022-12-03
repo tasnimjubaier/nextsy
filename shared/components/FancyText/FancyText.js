@@ -26,22 +26,22 @@ const Letter = styled.span`
 		let cur = props.current 
 		
 		if(cur == -1 || Math.abs(cur-id) > 2) return css`
-			color: #fff;
+			color: #111;
 			filter: blur(0px);
 		`
 		let d = Math.abs(cur-id)
 		return css`
-			color: #fff;
+			color: #111;
 			filter: blur(${2}px);
-			text-shadow: 0 0 10px yellow,
-									0 0 20px yellow,
-									0 0 40px yellow,
-									0 0 80px yellow,
-									0 0 120px yellow,
-									0 0 200px yellow,
-									0 0 300px yellow,
-									0 0 400px yellow,
-									0 0 500px yellow;
+			text-shadow: 0 0 10px #00b3ff,
+									0 0 20px #00b3ff,
+									0 0 40px #00b3ff,
+									0 0 80px #00b3ff,
+									0 0 120px #00b3ff,
+									0 0 200px #00b3ff,
+									0 0 300px #00b3ff,
+									0 0 400px #00b3ff,
+									0 0 500px #00b3ff;
 		`
 	}}
 

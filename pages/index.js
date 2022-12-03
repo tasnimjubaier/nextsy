@@ -2,8 +2,10 @@ import Head from 'next/head'
 import { useRef } from 'react'
 import { useEffect } from 'react'
 import styled from 'styled-components'
+import BouncingText from '../shared/components/BouncingText/BouncingText'
 import Brand from '../shared/components/Brand/Brand'
 import ConnectBoard from '../shared/components/ConnectBoard/ConnectBoard'
+import Drawing from '../shared/components/Drawing/Circle/Drawing'
 import FancyText from '../shared/components/FancyText/FancyText'
 import Faq from '../shared/components/Faq/Faq'
 import GoogleChart from '../shared/components/GoogleChart/GoogleChart'
@@ -21,7 +23,7 @@ import Testimonials from '../shared/components/Testimonials/Testimonials'
 const getMain = () => {
   return (
     <main>
-        {/* <Navbar /> */}
+        <Navbar />
         <section id='landingpage'>
           <LandingPage />
         </section>
@@ -49,6 +51,14 @@ const getMain = () => {
             <FancyText text={"Sadia Padia gondo korce"} />
           </MainWrapper>
         </section>
+        <section id='faq'>
+          <MainWrapper back={"white"}>
+            <BouncingText text={"Sadia Padia gondo korce"} />
+          </MainWrapper>
+        </section>
+        <section id='faq'>
+          <Drawing />
+        </section>
         
         {/* <Brand /> */}
         {/* <Playground2 /> */}
@@ -57,6 +67,7 @@ const getMain = () => {
       </main>
   )
 }
+
 
 export default function Home() {
 
@@ -73,10 +84,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* {getMain()}  */}
-      <MainWrapper back={"white"}>
-            <FancyText text={"Sadia Padia gondo korce"} />
-          </MainWrapper>
+      {getMain()} 
+
     </div>
   )
 }
+
