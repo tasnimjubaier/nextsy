@@ -1,17 +1,37 @@
-import React from 'react'
-
+import React, { useState } from 'react'
 import Head from 'next/head'
 import { useRef } from 'react'
 import { useEffect } from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
 
-const getMain = () => {
+const getMain = ({data}) => {
 	return (
-		<div>hello</div>
+		<div>data</div>
 	)
 }
-
 export default function Home() {
+  const [data, setData] = useState(null)
+  useEffect(() => {
+    const options = {
+      method: 'GET',
+      url: 'https://deezerdevs-deezer.p.rapidapi.com/artist/16000',
+      headers: {
+        'X-RapidAPI-Key': '9519828400msh6fc8c24fd0ddefep17152fjsn33af84712d65',
+        'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
+      }
+    };
+    
+    
+    axios.request(options).then(function (response) {
+      console.log(response.data)
+      setData(response.data)
+    }).catch(function (error) {
+      console.error(error.response.data)
+      setData(error.response.data)
+    })
+  }, []);
+
 
   return (
     <div>
@@ -26,8 +46,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {getMain()} 
-
+      {/* {getMain(data)}  */}
+      <div>
+        <pre>
+          <code>
+          {JSON.stringify(data, null, 2)}
+          </code>
+        </pre> 
+      </div>
+           
     </div>
   )
 }
